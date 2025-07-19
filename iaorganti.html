@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organti IA</title>
+  <link rel="stylesheet" href="styleia.css" />
+</head>
+<body>
+  <header>
+    <h1>Organti IA</h1>
+    <p class="subtitle">Assistente Inteligente da Organti</p>
+    <button id="theme-toggle">🌙 Modo Escuro</button>
+  </header>
+
+  <main id="chat-container">
+    <div class="chat-title">💬 Nova Conversa</div>
+
+    <div id="chat-box">
+      <!-- Mensagens dinâmicas aparecerão aqui -->
+    </div>
+
+    <div id="typing-indicator" class="hidden">Organti IA está digitando...</div>
+  </main>
+
+  <!-- Rodapé fixo com formulário -->
+  <div id="chat-footer">
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Digite sua mensagem..." autocomplete="off" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="scriptia.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organize Sua Rotina</title>
+  <!-- Link para o arquivo CSS -->
+  <link rel="stylesheet" href="styles2.css" />
+</head>
+<body>
+  <header>
+    <h1>ORGANIZE SUA ROTINA</h1>
+  </header>
+
+  <div class="container">
+    <!-- Calendário -->
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button id="prevMonthBtn">&lt;</button>
+        <h2 id="monthYear"></h2>
+        <button id="nextMonthBtn">&gt;</button>
+      </div>
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>Dom</th>
+            <th>Seg</th>
+            <th>Ter</th>
+            <th>Qua</th>
+            <th>Qui</th>
+            <th>Sex</th>
+            <th>Sáb</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody">
+          <!-- Linhas (semanas) e células (dias) serão geradas via JS -->
+        </tbody>
+      </table>
+    </div>
+<button onclick="toggleTheme()" id="themeToggleBtn">
+  Alternar Tema
+</button>
+
+    <!-- Painel de tarefas -->
+    <div class="tasks-container">
+      <h2>Tarefas do Dia</h2>
+      <div class="task-input">
+        <input 
+          id="taskInput" 
+          type="text" 
+          placeholder="Adicionar nova tarefa" 
+        />
+        <button id="addTaskBtn">Adicionar</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+  </div>
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeToggleBtn');
+
+    if (body.classList.contains('light-theme')) {
+      body.classList.remove('light-theme');
+      body.classList.add('dark-theme');
+      btn.textContent = 'Tema Claro';
+    } else {
+      body.classList.remove('dark-theme');
+      body.classList.add('light-theme');
+      btn.textContent = 'Tema Escuro';
+    }
+  }
+</script>
+
+  <!-- Script JS -->
+  <script src="script2.js"></script>
+</body>
+</html>

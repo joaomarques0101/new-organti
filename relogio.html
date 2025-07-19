@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Relógio Mundial Moderno</title>
+<style>
+  /* Tema escuro padrão */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  /* Tema claro */
+  body.light {
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  select {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: none;
+    background: #1f1f1f;
+    color: #eee;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.light select {
+    background: #ddd;
+    color: #222;
+  }
+  select:hover {
+    background: #333;
+  }
+  body.light select:hover {
+    background: #bbb;
+  }
+
+  #clock {
+    font-size: 4rem;
+    font-weight: 700;
+    background: #1e88e5;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(30, 136, 229, 0.6);
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    transition: background 0.4s, color 0.4s;
+  }
+  body.light #clock {
+    background: #1565c0;
+    color: #eee;
+  }
+
+  #timezoneName {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #bbb;
+    text-align: center;
+    max-width: 320px;
+    transition: color 0.4s;
+  }
+  body.light #timezoneName {
+    color: #444;
+  }
+
+  #themeToggleBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1e88e5;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(30, 136, 229, 0.6);
+    transition: background 0.3s;
+  }
+  #themeToggleBtn:hover {
+    background: #1565c0;
+  }
+  body.light #themeToggleBtn {
+    background: #ddd;
+    color: #222;
+    box-shadow: none;
+  }
+  body.light #themeToggleBtn:hover {
+    background: #bbb;
+  }
+</style>
+</head>
+<body>
+
+<button id="themeToggleBtn">Modo Claro</button>
+
+<h1>Relógio Mundial</h1>
+
+<select id="timezoneSelector">
+  <option value="America/Sao_Paulo">Brasil (São Paulo)</option>
+  <option value="America/New_York">Estados Unidos (Nova York)</option>
+  <option value="Europe/Lisbon">Portugal (Lisboa)</option>
+  <option value="America/Toronto">Canadá (Toronto)</option>
+  <option value="Africa/Johannesburg">África do Sul (Joanesburgo)</option>
+  <option value="Europe/Berlin">Alemanha (Berlim)</option>
+  <option value="Europe/Madrid">Espanha (Madrid)</option>
+  <option value="Europe/Moscow">Rússia (Moscou)</option>
+  <option value="Asia/Shanghai">China (Xangai)</option>
+  <option value="Europe/Paris">França (Paris)</option>
+  <option value="Europe/Rome">Itália (Roma)</option>
+  <option value="Australia/Sydney">Austrália (Sydney)</option>
+  <option value="Europe/Athens">Grécia (Atenas)</option>
+  <option value="America/Santiago">Chile (Santiago)</option>
+  <option value="America/Argentina/Buenos_Aires">Argentina (Buenos Aires)</option>
+</select>
+
+<div id="clock">--:--:--</div>
+<div id="timezoneName"></div>
+
+<script>
+  const clock = document.getElementById('clock');
+  const timezoneSelector = document.getElementById('timezoneSelector');
+  const timezoneName = document.getElementById('timezoneName');
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const body = document.body;
+
+  function updateClock() {
+    const tz = timezoneSelector.value;
+    const now = new Date();
+
+    const options = {
+      timeZone: tz,
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    };
+
+    const timeString = new Intl.DateTimeFormat('pt-BR', options).format(now);
+    clock.textContent = timeString;
+
+    let tzFriendlyName = '';
+    switch (tz) {
+      case 'America/Sao_Paulo':
+        tzFriendlyName = 'Horário de Brasília (Brasil)';
+        break;
+      case 'America/New_York':
+        tzFriendlyName = 'Horário de Nova York (Estados Unidos)';
+        break;
+      case 'Europe/Lisbon':
+        tzFriendlyName = 'Horário de Lisboa (Portugal)';
+        break;
+      case 'America/Toronto':
+        tzFriendlyName = 'Horário de Toronto (Canadá)';
+        break;
+      case 'Africa/Johannesburg':
+        tzFriendlyName = 'Horário de Joanesburgo (África do Sul)';
+        break;
+      case 'Europe/Berlin':
+        tzFriendlyName = 'Horário de Berlim (Alemanha)';
+        break;
+      case 'Europe/Madrid':
+        tzFriendlyName = 'Horário de Madrid (Espanha)';
+        break;
+      case 'Europe/Moscow':
+        tzFriendlyName = 'Horário de Moscou (Rússia)';
+        break;
+      case 'Asia/Shanghai':
+        tzFriendlyName = 'Horário de Xangai (China)';
+        break;
+      case 'Europe/Paris':
+        tzFriendlyName = 'Horário de Paris (França)';
+        break;
+      case 'Europe/Rome':
+        tzFriendlyName = 'Horário de Roma (Itália)';
+        break;
+      case 'Australia/Sydney':
+        tzFriendlyName = 'Horário de Sydney (Austrália)';
+        break;
+      case 'Europe/Athens':
+        tzFriendlyName = 'Horário de Atenas (Grécia)';
+        break;
+      case 'America/Santiago':
+        tzFriendlyName = 'Horário de Santiago (Chile)';
+        break;
+      case 'America/Argentina/Buenos_Aires':
+        tzFriendlyName = 'Horário de Buenos Aires (Argentina)';
+        break;
+      default:
+        tzFriendlyName = tz;
+    }
+    timezoneName.textContent = tzFriendlyName;
+  }
+
+  setInterval(updateClock, 1000);
+  timezoneSelector.addEventListener('change', updateClock);
+  updateClock();
+
+  // Alternar tema claro/escuro
+  themeToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('light');
+    if(body.classList.contains('light')) {
+      themeToggleBtn.textContent = 'Modo Escuro';
+    } else {
+      themeToggleBtn.textContent = 'Modo Claro';
+    }
+  });
+</script>
+
+</body>
+</html>

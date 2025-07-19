@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador de Lembranças</title>
+  <!-- Link para o CSS -->
+  <link rel="stylesheet" href="styles4.css">
+  <!-- Ícones do Font Awesome para o lápis -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Organizador de Lembranças</h1>
+  </header>
+
+  <main>
+    <!-- Seção de cartões de lembranças -->
+    <section class="memories-container">
+      <!-- Exemplo de cartão de lembrança -->
+      <div class="memory-card">
+        <div class="memory-image">
+          <img src="https://via.placeholder.com/300x200" alt="Lembrança">
+        </div>
+        <div class="memory-content">
+          <h2>Lembrança Especial</h2>
+          <p class="description">Uma viagem inesquecível com amigos em um lugar mágico.</p>
+          <blockquote class="motivational">
+            "A vida é feita dos melhores momentos, guarde-os com carinho."
+          </blockquote>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <div class="memory-image">
+          <img src="https://via.placeholder.com/300x200" alt="Lembrança">
+        </div>
+        <div class="memory-content">
+          <h2>Dia de Alegria</h2>
+          <p class="description">Celebrando cada instante de felicidade com um sorriso.</p>
+          <blockquote class="motivational">
+            "Sorria, a vida é uma aventura repleta de surpresas maravilhosas."
+          </blockquote>
+        </div>
+      </div>
+      <!-- Você pode adicionar mais cartões conforme desejar -->
+    </section>
+
+    <!-- Seção para registrar como foi o dia -->
+    <section class="diary-section">
+      <h2>Como foi seu dia?</h2>
+      <div class="diary-input">
+        <textarea id="diaryText" placeholder="Conte como foi seu dia..."></textarea>
+        <button id="saveDiary"><i class="fas fa-pencil-alt"></i></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Script JS -->
+  <script src="script4.js"></script>
+</body>
+</html>

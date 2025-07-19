@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Organizacional</title>
+  <link rel="stylesheet" href="style1.css" />
+  <!-- Chart.js CDN (opcional, pra seus gráficos) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Botão toggle para abrir/fechar sidebar no mobile -->
+  <button id="toggleSidebar" aria-label="Abrir/Fechar menu lateral">☰</button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>FRIDA Project</h2>
+    </div>
+    <nav class="sidebar-menu">
+      <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="pagina5.html">Financeiro</a></li>
+        <li><a href="pagina3.html">Calorias</a></li>
+        <li><a href="pagina2.html">Calendário</a></li>
+        <li><a href="pagina4.html">Agenda</a></li>
+        <li><a href="iaorganti.html">I.A Organti</a></li>
+        <li><a href="paginade.html">Ferramentas</a></li>
+        <li><a href="pagina8.html">Relatórios</a></li>
+        <li><a href="pagina9.html">Sobre</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-content">
+    <header class="main-header">
+      <h1>Painel de Controle</h1>
+      <div class="user-info">
+        <span>Usuário: Maria Silva</span>
+      </div>
+    </header>
+
+    <section class="charts-section">
+      <div class="chart-container">
+        <h2>Distribuição de Custos</h2>
+        <canvas id="pieChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h2>Comparativo de Orçamento</h2>
+        <canvas id="barChart"></canvas>
+      </div>
+    </section>
+
+    <section class="charts-section">
+      <div class="chart-container">
+        <h2>Progresso de Metas</h2>
+        <canvas id="lineChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h2>Exemplo de Gráfico Horizontal</h2>
+        <canvas id="horizontalBarChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

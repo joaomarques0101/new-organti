@@ -1,0 +1,383 @@
+/* ---------------------- */
+/* VARIÁVEIS GERAIS       */
+/* ---------------------- */
+:root {
+  --header-height: 100px;
+  --container-width: 1200px;
+  --transition-speed: 0.3s;
+
+  --font-primary: "Arial", sans-serif;
+  --font-secondary: "Helvetica", sans-serif;
+}
+
+/* ---------------------- */
+/* TEMA CLARO             */
+/* ---------------------- */
+.light-theme {
+  --primary-color: #4b6cb7;
+  --secondary-color: #182848;
+  --accent-color: #ff6b6b;
+  --bg-color: #f0f0f0;
+  --white: #ffffff;
+  --black: #000000;
+  --card-bg: #ffffff;
+  --calendar-hover: #f9f9f9;
+  --task-bg: #f7f7f7;
+  --task-hover: #f0f0f0;
+  --calendar-head-bg: #eee;
+  --task-scroll-track: #ccc;
+}
+
+/* ---------------------- */
+/* TEMA ESCURO            */
+/* ---------------------- */
+.dark-theme {
+  --primary-color: #3a3a98;
+  --secondary-color: #1e1e2f;
+  --accent-color: #ff6b6b;
+  --bg-color: #121212;
+  --white: #eaeaea;
+  --black: #ffffff;
+  --card-bg: #1e1e2f;
+  --calendar-hover: #2a2a2a;
+  --task-bg: #2a2a2a;
+  --task-hover: #1f1f1f;
+  --calendar-head-bg: #333;
+  --task-scroll-track: #444;
+}
+
+/* ---------------------- */
+/* RESET                  */
+/* ---------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+/* ---------------------- */
+/* BODY E BACKGROUND      */
+/* ---------------------- */
+body {
+  background-color: var(--bg-color);
+  color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* ---------------------- */
+/* ANIMAÇÕES              */
+/* ---------------------- */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px var(--accent-color);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  100% {
+    box-shadow: 0 0 10px var(--accent-color);
+  }
+}
+
+/* ---------------------- */
+/* HEADER                 */
+/* ---------------------- */
+header {
+  width: 100%;
+  height: var(--header-height);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease;
+}
+
+header h1 {
+  font-family: var(--font-secondary);
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+/* ---------------------- */
+/* CONTAINER PRINCIPAL    */
+/* ---------------------- */
+.container {
+  max-width: var(--container-width);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ---------------------- */
+/* CALENDAR CONTAINER     */
+/* ---------------------- */
+.calendar-container {
+  flex: 1;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  animation: scaleUp 0.8s ease;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-header h2 {
+  font-size: 1.6rem;
+  color: var(--secondary-color);
+  text-transform: capitalize;
+}
+
+.calendar-header button {
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  font-size: 1rem;
+}
+
+.calendar-header button:hover {
+  background: #ff5c5c;
+}
+
+/* Tabela do calendário */
+.calendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar thead th {
+  background: var(--calendar-head-bg);
+  padding: 0.8rem;
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--secondary-color);
+}
+
+.calendar td {
+  height: 80px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: background var(--transition-speed), color var(--transition-speed);
+  font-size: 1.1rem;
+  color: var(--black);
+  position: relative;
+}
+
+.calendar td:hover {
+  background: var(--calendar-hover);
+}
+
+.calendar td.selected-day {
+  background: var(--primary-color);
+  color: var(--white);
+  font-weight: bold;
+  animation: glow 1.5s infinite;
+}
+
+/* ---------------------- */
+/* TASKS CONTAINER        */
+/* ---------------------- */
+.tasks-container {
+  width: 400px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  animation: scaleUp 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasks-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.task-input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+#addTaskBtn {
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  font-size: 1rem;
+}
+
+#addTaskBtn:hover {
+  background: #ff5c5c;
+}
+
+/* Lista de tarefas */
+#taskList {
+  list-style: none;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+#taskList li {
+  background: var(--task-bg);
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  position: relative;
+  font-size: 1rem;
+  transition: transform var(--transition-speed), background var(--transition-speed);
+}
+
+#taskList li:hover {
+  transform: translateX(3px);
+  background: var(--task-hover);
+}
+
+/* Botão de remover tarefa */
+#taskList li .remove-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background var(--transition-speed);
+}
+
+#taskList li .remove-btn:hover {
+  background: #ff5c5c;
+}
+
+/* Scroll customizado para a lista de tarefas */
+#taskList::-webkit-scrollbar {
+  width: 8px;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+#taskList::-webkit-scrollbar-track {
+  background: var(--task-scroll-track);
+}
+
+/* ---------------------- */
+/* RESPONSIVIDADE         */
+/* ---------------------- */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-container, .tasks-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar td {
+    height: 60px;
+    font-size: 0.9rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .calendar-header h2 {
+    font-size: 1.2rem;
+  }
+
+  #taskInput, #addTaskBtn {
+    font-size: 0.9rem;
+  }
+}
+#themeToggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  z-index: 1000;
+}
+
+#themeToggleBtn:hover {
+  background: #ff5c5c;
+}

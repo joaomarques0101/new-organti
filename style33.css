@@ -1,0 +1,124 @@
+:root {
+  --bg-color: #f5f5f5;
+  --calculator-bg: #ffffff;
+  --text-color: #000;
+  --display-bg: #f0f0f0;
+  --btn-bg: #e0e0e0;
+  --btn-hover: #d5d5d5;
+  --operator-bg: #4caf50;
+  --operator-hover: #45a049;
+  --operator-color: #fff;
+}
+
+.dark-mode {
+  --bg-color: #0e0e0e;
+  --calculator-bg: #1c1c1c;
+  --text-color: #fff;
+  --display-bg: #000;
+  --btn-bg: #2e2e2e;
+  --btn-hover: #444;
+  --operator-bg: #00bcd4;
+  --operator-hover: #0097a7;
+  --operator-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+  margin-bottom: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--btn-bg);
+  color: var(--text-color);
+  transition: background 0.3s;
+}
+
+.calculator {
+  background: var(--calculator-bg);
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+.display {
+  background: var(--display-bg);
+  padding: 1rem;
+  font-size: 2rem;
+  text-align: right;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  min-height: 3.5rem;
+  color: var(--text-color);
+  overflow-x: auto;
+  transition: background 0.3s, color 0.3s;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.btn {
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+}
+
+.operator {
+  background: var(--operator-bg);
+  color: var(--operator-color);
+}
+
+.operator:hover {
+  background: var(--operator-hover);
+}
+
+/* 📱 Responsividade: telas menores */
+@media (max-width: 400px) {
+  .display {
+    font-size: 1.5rem;
+    padding: 0.8rem;
+  }
+
+  .btn {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  #theme-toggle {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}

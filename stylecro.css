@@ -1,0 +1,151 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo: layout flexível, altura mínima 100vh */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Container com largura flexível e max-width para limitar em telas grandes */
+.container {
+  text-align: center;
+  padding: 2.5rem 3rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  transition: background 0.5s ease;
+}
+
+/* Título */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 1.25rem;
+}
+
+/* Timer - font-size responsivo e largura mínima com ajuste */
+.timer {
+  font-size: clamp(2.5rem, 6vw, 3rem);
+  margin-bottom: 1.875rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  min-width: 250px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Botões agrupados - centralizados e flex-wrap para melhor responsividade */
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.buttons button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex: 1 1 120px; /* permite crescer, encolher e largura base */
+  max-width: 180px;
+  min-width: 120px;
+}
+
+.buttons button:hover {
+  background-color: #019875;
+}
+
+/* Botão do tema separado para diferenciar */
+.theme-btn {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  padding: 0.625rem 2rem;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.theme-btn:hover {
+  background-color: #065cb3;
+}
+
+/* Light Theme */
+body.light-theme {
+  background: #f0f0f3;
+  color: #222;
+}
+
+body.light-theme .container {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .buttons button {
+  background-color: #0984e3;
+}
+
+body.light-theme .buttons button:hover {
+  background-color: #065cb3;
+}
+
+body.light-theme .theme-btn {
+  background-color: #00b894;
+}
+
+body.light-theme .theme-btn:hover {
+  background-color: #019875;
+}
+
+/* Media Queries para telas pequenas */
+@media (max-width: 400px) {
+  .container {
+    padding: 1.5rem 2rem;
+  }
+
+  .timer {
+    font-size: 2rem;
+    min-width: auto;
+    letter-spacing: 1.5px;
+  }
+
+  .buttons {
+    gap: 0.75rem;
+  }
+
+  .buttons button {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .theme-btn {
+    max-width: 100%;
+    padding: 0.75rem 1rem;
+  }
+}

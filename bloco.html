@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bloco de Notas Moderno</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      user-select: none;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+      transition: border-color 0.3s ease;
+      width: 100%;
+      min-height: 300px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #4a90e2;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4a90e2;
+      background: #e6f0fd;
+      border: 2px solid #4a90e2;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      flex: 1 1 150px;
+      max-width: 200px;
+    }
+
+    button:hover {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    /* Modo escuro */
+    body.dark {
+      background-color: #121212;
+      color: #ddd;
+    }
+
+    body.dark header {
+      background-color: #222;
+      color: #eee;
+    }
+
+    body.dark textarea {
+      background-color: #222;
+      border-color: #444;
+      color: #eee;
+      box-shadow: 0 4px 6px rgb(255 255 255 / 0.1);
+    }
+
+    body.dark textarea:focus {
+      border-color: #4a90e2;
+    }
+
+    body.dark button {
+      background-color: #333;
+      border-color: #4a90e2;
+      color: #4a90e2;
+    }
+
+    body.dark button:hover {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.3rem;
+        padding: 0.8rem;
+      }
+
+      textarea {
+        min-height: 250px;
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Bloco de Notas Moderno</header>
+  <main>
+    <textarea id="note" placeholder="Escreva suas anotações aqui..."></textarea>
+    <div class="buttons">
+      <button id="saveBtn">💾 Salvar</button>
+      <button id="clearBtn">🗑 Limpar</button>
+      <button id="toggleThemeBtn">🌙 Modo Escuro</button>
+    </div>
+  </main>
+
+  <script>
+    const textarea = document.getElementById('note');
+    const saveBtn = document.getElementById('saveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+
+    window.onload = () => {
+      const savedNote = localStorage.getItem('myNote');
+      if (savedNote) {
+        textarea.value = savedNote;
+      }
+    };
+
+    saveBtn.addEventListener('click', () => {
+      const texto = textarea.value;
+      if (!texto.trim()) {
+        alert('A área de texto está vazia!');
+        return;
+      }
+      const blob = new Blob([texto], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'minhas-anotacoes.txt';
+      document.body.appendChild(link);
+      link.click();
+      URL.revokeObjectURL(url);
+      link.remove();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      if (confirm('Deseja limpar todas as anotações?')) {
+        textarea.value = '';
+        localStorage.removeItem('myNote');
+      }
+    });
+
+    toggleThemeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleThemeBtn.textContent = document.body.classList.contains('dark') 
+        ? '☀️ Modo Claro' 
+        : '🌙 Modo Escuro';
+    });
+
+    // Salvar automaticamente no localStorage
+    textarea.addEventListener('input', () => {
+      localStorage.setItem('myNote', textarea.value);
+    });
+  </script>
+</body>
+</html>
